@@ -3,6 +3,7 @@ package com.sky.service;
 
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
+import com.sky.entity.Dish;
 import com.sky.result.PageResult;
 import com.sky.vo.DishVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,9 @@ public interface DishService {
      * 更新菜品并保存菜品口味
      */
     void updateWithFlavor(DishDTO dishDTO);
+
+    /**
+     * 根据分类id查询菜品列表
+     */
+    List<Dish> listByCategoryId(Long categoryId);
 }
