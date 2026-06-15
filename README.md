@@ -57,18 +57,6 @@ Linux/CentOS | Docker（可选） | Nginx 负载均衡
 7. **Nginx 前后端分离线上部署**
 配置静态资源长期缓存、后端接口反向代理，支持多服务实例负载均衡，分离前后端资源，提升页面访问速度。
 
-## 📂 项目目录结构
-campus-canteen-fullstack
-├── canteen-server # SpringBoot 后端服务
-│ ├── src/main/java # 后端业务代码
-│ ├── src/main/resources # 配置文件、mapper 映射
-│ └── pom.xml # Maven 依赖管理
-├── canteen-admin-vue # 食堂商家管理后台 Vue 项目
-├── canteen-mini-program # 学生微信小程序源码
-├── sql # MySQL 初始化脚本、测试数据
-└── docs # 部署文档、接口截图、配置模板
-
-
 ## 🚀 本地快速启动
 ### 环境前置准备
 - JDK 1.8+
