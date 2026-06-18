@@ -17,3 +17,6 @@ sky:
     password:
     database: 10
     timeout: 10s
+  wechat:
+    appid: ${WECHAT_APPID}
+    secret: ${WECHAT_SECRET}
