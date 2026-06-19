@@ -76,18 +76,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             shoppingCart.setNumber(1);
             shoppingCart.setCreateTime(LocalDateTime.now());
             shoppingCartMapper.insert(shoppingCart);
-
-
-
-
-
-
-
         }
-
-
-
-
     }
 
     /**
@@ -113,6 +102,49 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         Long userId = BaseContext.getCurrentId();
         shoppingCartMapper.deleteByUserId(userId);
 
+    }
+
+    /**
+     * 删除购物车中的一件商品
+     * @param shoppingCart
+     */
+    @Override
+    public void deleteShoppingCart(ShoppingCart shoppingCart) {
+        Long userId = BaseContext.getCurrentId();//当前登录用户id
+        //设置用户id，确保list查询只查当前用户的购物车
+        shoppingCart.setUserId(userId);
+
+        List<ShoppingCart> cartList = shoppingCartMapper.list(shoppingCart);
+        //购物车中没有该商品，直接返回
+        if (cartList == null || cartList.isEmpty()) {
+            return;
+        }
+
+        ShoppingCart cart = cartList.get(0);
+        Long dishId = shoppingCart.getDishId();
+
+        if (dishId != null) {
+            //如果是菜品
+            if (cart.getNumber() > 1) {
+                //数量大于1，数量减1
+                cart.setNumber(cart.getNumber() - 1);
+                shoppingCartMapper.updateNumberById(cart);
+            } else {
+                //如果数量为1，直接删除
+                shoppingCartMapper.deleteByDishId(userId, dishId, shoppingCart.getDishFlavor());
+            }
+        } else {
+            //如果是套餐
+            if (cart.getNumber() > 1) {
+                //数量大于1，数量减1
+                cart.setNumber(cart.getNumber() - 1);
+                shoppingCartMapper.updateNumberById(cart);
+            } else {
+                //如果数量为1，直接删除
+                Long setmealId = shoppingCart.getSetmealId();
+                shoppingCartMapper.deleteBySetmealId(userId, setmealId);
+            }
+        }
     }
 
 

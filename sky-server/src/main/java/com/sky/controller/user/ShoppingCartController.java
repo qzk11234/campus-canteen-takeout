@@ -52,6 +52,15 @@ public class ShoppingCartController {
     }
 
 
+    /**
+     * 删除购物车商品
+     */
+    @PostMapping("/sub")
+    public Result delete(@RequestBody ShoppingCart shoppingCart) {
+        log.info("删除购物车商品：{}", shoppingCart);
+        shoppingCartService.deleteShoppingCart(shoppingCart);
+        return Result.success();
+    }
 
 
 
