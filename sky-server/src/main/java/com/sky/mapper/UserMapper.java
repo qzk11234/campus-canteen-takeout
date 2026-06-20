@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.Map;
+
 @Mapper
 public interface UserMapper {
 
@@ -22,4 +24,15 @@ public interface UserMapper {
      * 插入用户
      */
     void insert(User user);
+
+    /**
+     * 根据条件统计用户数量
+     */
+    Integer countByMap(Map map);
+
+
+
+
+
+
 }

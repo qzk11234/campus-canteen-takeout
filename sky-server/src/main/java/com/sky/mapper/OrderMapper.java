@@ -66,4 +66,16 @@ public interface OrderMapper {
      * @param map
      */
     Double sumByMap(Map map);
+
+    /**
+     * 根据状态和时间范围统计订单数量
+     * @param map
+     */
+    Integer countByMap(Map map);
+
+    /**
+     * 查询销量top10
+     * @param map
+     */
+    List<Map<String, Object>> getTop10(Map map);
 }
